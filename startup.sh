@@ -12,4 +12,4 @@ service sshd start
 # TODO if enabled should we tail the karaf log to work nicer with docker logs?
 #tail -f /home/fuse/fabric8/data/log/karaf.log
 
-/home/fuse/fabric8/bin/karaf server
+/home/fuse/fabric8/bin/fabric8 run
