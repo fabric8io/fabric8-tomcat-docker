@@ -12,4 +12,4 @@ service sshd start
 # TODO if enabled should we tail the karaf log to work nicer with docker logs?
 #tail -f /home/fabric8/logs/karaf.log
 
-/home/fabric8/fabric8-tomcat/bin/fabric8 run
+sudo -u fabric8 /home/fabric8/fabric8-tomcat/bin/fabric8 run

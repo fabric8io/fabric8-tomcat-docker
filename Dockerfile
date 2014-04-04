@@ -18,6 +18,12 @@ ENV FABRIC8_BINDADDRESS 0.0.0.0
 # add a user for the application, with sudo permissions
 RUN useradd -m fabric8 ; echo fabric8: | chpasswd ; usermod -a -G wheel fabric8
 
+# assigning higher default ulimits
+# unluckily this is not very portable. these values work only if the user running docker daemon on the host has his own limits >= than values set here
+# if they are not, the risk is that the "su fuse" operation will fail
+RUN echo "fabric8                -       nproc           4096" >> /etc/security/limits.conf
+RUN echo "fabric8                -       nofile           4096" >> /etc/security/limits.conf
+
 # command line goodies
 RUN echo "export JAVA_HOME=/usr/lib/jvm/jre" >> /etc/profile
 RUN echo "alias ll='ls -l --color=auto'" >> /etc/profile
@@ -34,6 +40,8 @@ RUN mv fabric8-tomcat-1.1.0-SNAPSHOT fabric8-tomcat
 #RUN mv fabric8-tomcat-1.0.0.redhat-366 fabric8-tomcat
 RUN rm fabric8.zip
 RUN chown -R fabric8:fabric8 fabric8-tomcat
+
+USER fabric8
 
 WORKDIR /home/fabric8/fabric8-tomcat/etc
 
@@ -66,5 +74,7 @@ RUN curl --silent --output startup.sh https://raw.github.com/fabric8io/fabric8-t
 RUN chmod +x startup.sh
 
 EXPOSE 22 1099 2181 8101 8080 9300 9301 44444 61616 
+
+USER root
 
 CMD /home/fabric8/startup.sh
