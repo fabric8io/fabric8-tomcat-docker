@@ -71,7 +71,7 @@ WORKDIR /home/fabric8/fabric8-tomcat
 
 WORKDIR /home/fabric8
 
-RUN curl --silent --output startup.sh https://raw.githubusercontent.com/fabric8io/fabric8-tomcat-docker/f20fcfe81f59e53128013c9ddd14e90a15853f7f/startup.sh
+RUN curl --silent --output startup.sh https://raw.githubusercontent.com/fabric8io/fabric8-tomcat-docker/cc23a6c56176ffaefba58c09cc1281872c38c44c/startup.sh
 RUN chmod +x startup.sh
 
 EXPOSE 22 1099 2181 8101 8080 9300 9301 44444 61616 
