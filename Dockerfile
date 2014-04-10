@@ -33,12 +33,12 @@ RUN echo "alias grep='grep --color=auto'" >> /etc/profile
 
 WORKDIR /home/fabric8
 
-RUN curl --silent --output fabric8.zip https://repository.jboss.org/nexus/content/groups/fs-public-snapshots/io/fabric8/runtime/fabric8-tomcat/1.1.0-SNAPSHOT/fabric8-tomcat-1.1.0-20140408.092939-5.zip
-#RUN curl --silent --output fabric8.zip https://repository.jboss.org/nexus/content/groups/ea/io/fabric8/runtime/fabric8-tomcat/1.0.0.redhat-366/fabric8-tomcat-1.0.0.redhat-366.zip
+#RUN curl --silent --output fabric8.zip https://repository.jboss.org/nexus/content/groups/fs-public-snapshots/io/fabric8/runtime/fabric8-tomcat/1.1.0-SNAPSHOT/fabric8-tomcat-1.1.0-20140408.092939-5.zip
+RUN curl --silent --output fabric8.zip https://repository.jboss.org/nexus/content/repositories/fs-public/io/fabric8/runtime/fabric8-tomcat/1.1.0.Beta1/fabric8-tomcat-1.1.0.Beta1.zip
 RUN unzip -q fabric8.zip 
 RUN ls -al
-RUN mv fabric8-tomcat-1.1.0-SNAPSHOT fabric8-tomcat
-#RUN mv fabric8-tomcat-1.0.0.redhat-366 fabric8-tomcat
+#RUN mv fabric8-tomcat-1.1.0-SNAPSHOT fabric8-tomcat
+RUN mv fabric8-tomcat-1.1.0.Beta1 fabric8-tomcat
 RUN rm fabric8.zip
 RUN chown -R fabric8:fabric8 fabric8-tomcat
 
