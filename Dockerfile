@@ -40,9 +40,9 @@ RUN ls -al
 #RUN mv fabric8-tomcat-1.1.0-SNAPSHOT fabric8-tomcat
 RUN mv fabric8-tomcat-1.1.0.Beta1 fabric8-tomcat
 RUN rm fabric8.zip
-RUN chown -R fabric8:fabric8 fabric8-tomcat
+#RUN chown -R fabric8:fabric8 fabric8-tomcat
 
-USER fabric8
+#USER fabric8
 
 WORKDIR /home/fabric8/fabric8-tomcat/etc
 
@@ -76,6 +76,6 @@ RUN chmod +x startup.sh
 
 EXPOSE 22 1099 2181 8101 8080 9300 9301 44444 61616 
 
-USER root
+#USER root
 
 CMD /home/fabric8/startup.sh
