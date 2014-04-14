@@ -17,13 +17,13 @@ ENV FABRIC8_BINDADDRESS 0.0.0.0
 ENV FABRIC8_PROFILES docker
 
 # add a user for the application, with sudo permissions
-RUN useradd -m fabric8 ; echo fabric8: | chpasswd ; usermod -a -G wheel fabric8
+#RUN useradd -m fabric8 ; echo fabric8: | chpasswd ; usermod -a -G wheel fabric8
 
 # assigning higher default ulimits
 # unluckily this is not very portable. these values work only if the user running docker daemon on the host has his own limits >= than values set here
 # if they are not, the risk is that the "su fuse" operation will fail
-RUN echo "fabric8                -       nproc           4096" >> /etc/security/limits.conf
-RUN echo "fabric8                -       nofile           4096" >> /etc/security/limits.conf
+#RUN echo "fabric8                -       nproc           4096" >> /etc/security/limits.conf
+#RUN echo "fabric8                -       nofile           4096" >> /etc/security/limits.conf
 
 # command line goodies
 RUN echo "export JAVA_HOME=/usr/lib/jvm/jre" >> /etc/profile
@@ -33,12 +33,10 @@ RUN echo "alias grep='grep --color=auto'" >> /etc/profile
 
 WORKDIR /home/fabric8
 
-#RUN curl --silent --output fabric8.zip https://repository.jboss.org/nexus/content/groups/fs-public-snapshots/io/fabric8/runtime/fabric8-tomcat/1.1.0-SNAPSHOT/fabric8-tomcat-1.1.0-20140408.092939-5.zip
-RUN curl --silent --output fabric8.zip https://repository.jboss.org/nexus/content/repositories/fs-public/io/fabric8/runtime/fabric8-tomcat/1.1.0.Beta1/fabric8-tomcat-1.1.0.Beta1.zip
+RUN curl --silent --output fabric8.zip http://central.maven.org/maven2/io/fabric8/runtime/fabric8-tomcat/1.1.0.Beta3/fabric8-tomcat-1.1.0.Beta3.zip
 RUN unzip -q fabric8.zip 
 RUN ls -al
-#RUN mv fabric8-tomcat-1.1.0-SNAPSHOT fabric8-tomcat
-RUN mv fabric8-tomcat-1.1.0.Beta1 fabric8-tomcat
+RUN mv fabric8-tomcat-1.1.0.Beta3 fabric8-tomcat
 RUN rm fabric8.zip
 #RUN chown -R fabric8:fabric8 fabric8-tomcat
 
